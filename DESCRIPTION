@@ -1,0 +1,17 @@
+Package: qpcRo
+Title: qPCR
+Version: 0.1
+Authors@R: person("Christoph", "Kiefer", email = "christophak@bmb.sdu.dk",
+                  role = c("aut", "cre"))
+Description: qPCR.
+Depends: R (>= 3.1.0)
+License: GPL-3.0-or-later
+Encoding: UTF-8
+LazyData: true
+Imports:
+    dplyr,
+    readr,
+    purrr,
+    ggplot2,
+    ggpmisc
+RoxygenNote: 6.1.0
