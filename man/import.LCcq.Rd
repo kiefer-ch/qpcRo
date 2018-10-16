@@ -4,7 +4,7 @@
 \alias{import.LCcq}
 \title{Import Cq Values Calculated Using LightCycler Software}
 \usage{
-import.LCcq(file, pipettingScheme = NULL)
+import.LCcq(file, pipettingScheme = NULL, decimal_mark = ".")
 }
 \arguments{
 \item{file}{A txt file with calculated Cq values from the LightCycler software}
@@ -17,6 +17,6 @@ Import Cq Values Calculated Using LightCycler Software
 }
 \examples{
 scheme <- get.pipettingScheme(paste("primer", 1:7), c(1:5), 1, 2, 1, nrow = 10, first_col = 18)
-    import.LCcq("data/180927_primer.txt", scheme)
+    import.LCcq("data/primer.txt", scheme, decimal_mark = ',')
 
 }
