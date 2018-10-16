@@ -30,7 +30,7 @@
 analyse.primers <- function(scheme, dil = NULL, notPass = NULL) {
 
     if (is.null(dil)) {
-        dil <- 1 / as.numeric(scheme$cond)
+        dil <- 1 / as.numeric(as.character(scheme$cond))
     } else if (is.numeric(dil) && all(unique(scheme$cond) %in% names(dil))) {
         dil <- 1 / dil[scheme$cond]
     }

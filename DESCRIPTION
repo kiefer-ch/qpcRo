@@ -13,5 +13,6 @@ Imports:
     readr,
     purrr,
     ggplot2,
-    ggpmisc
+    ggpmisc,
+    ggrepel
 RoxygenNote: 6.1.0

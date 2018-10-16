@@ -46,11 +46,8 @@ tibble(gene = rep(names_gene, each = length_gene),
         repl_tech = rep(rep(rep(unlist(lapply(rep_tech, seq)), each = rep_qpcr),
             num_gene), rep_biol),
         col = rep(1:(cols_gene * num_gene), samples_per_column),
-        row = rep(rep(1:length_gene %% nrow, rep_biol), num_gene)) %>%
+        row = rep(1:length_gene %% nrow, num_gene)) %>%
     mutate(row = LETTERS[if_else(row == 0, nrow, row)],
         col = as.integer(col + first_col - 1))
 
 }
-
-
-
