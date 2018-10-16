@@ -140,7 +140,7 @@ plot.dCq <- function(scheme) {
 analyse.dcq <- function(scheme, file, hkp, output = ".", silent = FALSE,
     decimal_mark = '.') {
 
-    df <- import.LCcq(file, scheme, decimal_mark = '.')
+    df <- import.LCcq(file, scheme, decimal_mark = decimal_mark)
 
     if(silent == FALSE) {
         for (i in 1:unique(df$repl_biol)) {
