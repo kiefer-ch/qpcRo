@@ -128,3 +128,84 @@ plot.dCq <- function(scheme) {
         scale_color_discrete(guide = FALSE)
 
 }
+
+
+#'
+#' Get delta Cq values
+#'
+#' @examples analyse.cq(scheme, "./data/example.txt",
+#'   hkp = c("housekeeper_1", "housekeeper_2"), silent = TRUE)
+#'
+#' @export
+analyse.dcq <- function(scheme, file, hkp, output = ".", silent = FALSE) {
+    df <- import.LCcq(file, scheme)
+
+    if(silent == FALSE) {
+        for (i in 1:unique(df$repl_biol)) {
+            plot.cq(df, rep_biol = i)
+            ggsave(paste0(output, "/cq_rep_", i, ".pdf"), height = 10, width = 16.18)
+        }
+    }
+
+    df <- df %>%
+        get.averageCq() %>%
+        get.dCq(hkp = hkp) %>%
+        get.averageDCq()
+
+    if(silent == FALSE) {
+        write_csv(df, paste0(output, "/dcq.csv"))
+
+        plot.dCq(df)
+        ggsave(paste0(output, "/dcq.pdf"), height = 10, width = 16.18)
+    }
+
+    return(df)
+}
+
+
+#'
+#' Calculate delta delta Cq values
+#'
+#' @export
+get.ddcq <- function(scheme, reference = scheme$cond[1]) {
+    scheme %>%
+        group_by(gene, repl_biol) %>%
+        mutate(ddcq = dcq - dcq[cond == reference]) %>%
+        ungroup()
+}
+
+#'
+#' Plot delta delta Cq values
+#'
+#' @export
+plot.ddCq <- function(scheme) {
+    scheme %>%
+        ggplot(aes(cond, -ddcq)) +
+            geom_jitter(aes(colour = as.factor(repl_biol)), size = .5, width = .1, height = 0) +
+            facet_wrap(~gene, scales = "free_y") +
+        scale_color_discrete(guide = FALSE)
+
+}
+
+#'
+#' Run the whole ddcq analysis
+#'
+#' @examples analyse.ddcq(scheme, "./data/example.txt",
+#'   hkp = c("housekeeper_1", "housekeeper_2"), silent = TRUE)
+#'
+#' @export
+analyse.ddcq <- function(scheme, file, hkp, output = ".", silent = FALSE,
+    reference = scheme$cond[1]) {
+
+    df <- scheme %>%
+        analyse.dcq(file, hkp, output, silent) %>%
+        get.ddcq()
+
+    if(silent == FALSE) {
+        plot.ddCq(df)
+        ggsave(paste0(output, "/dcq.pdf"), height = 10, width = 16.18)
+    }
+
+    return(df)
+
+}
