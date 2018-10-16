@@ -66,7 +66,8 @@ get.averageCq <- function(scheme, notPass = NULL) {
         mutate(pos = paste0(row, col)) %>%
         filter(!pos %in% notPass) %>%
         group_by(gene, cond, repl_biol, repl_tech) %>%
-        summarise(cq = mean(cq, na.rm = TRUE))
+        summarise(cq = mean(cq, na.rm = TRUE)) %>%
+        ungroup()
 
 }
 
@@ -82,8 +83,9 @@ get.averageCq <- function(scheme, notPass = NULL) {
 get.dCq <- function(scheme, hkp) {
     ref <- scheme %>%
         filter(gene %in% hkp) %>%
-        dplyr::select(-gene) %>%
-        dplyr::rename(housekeeper = cq)
+        group_by(cond, repl_biol, repl_tech) %>%
+        summarise(housekeeper = mean(cq)) %>%
+        ungroup()
 
    scheme %>%
         filter(!gene %in% hkp) %>%
