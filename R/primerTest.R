@@ -21,7 +21,7 @@
 #' @import ggrepel
 #'
 #' @examples scheme <- get.pipettingScheme(paste("primer", 1:7), 1:5, 1, 2, 1, nrow = 10, first_col = 18)
-#'     scheme <- import.LCcq("data/primer.txt", scheme, decimal_mark = ',')
+#'     scheme <- import.LCcq("data-raw/primer.txt", scheme, decimal_mark = ',')
 #'     dils <- c(1, 6, 36, 216, 1298)
 #'     names(dils) <- 1:5
 #'     analyse.primers(scheme, dil = dils, notPass = c("J22", "I22"))

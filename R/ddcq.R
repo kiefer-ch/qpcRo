@@ -23,7 +23,7 @@
 #' @examples scheme <- get.pipettingScheme(c(paste0("gene_", 1:6), paste0("housekeeper_", 1:2)),
 #'         c(0, 2, 4, "6_NTC", "6_CL", "6_iso", "7_NTC", "7_CL", "7_iso"), 2,
 #'         c(2,2,2,3,3,3,3,3,3), 1)
-#'     scheme <- import.LCcq("data/example.txt", scheme)
+#'     scheme <- import.LCcq("data-raw/example.txt", scheme)
 #'     plot.cq(scheme, notPass = "N19")
 #'
 #' @export
@@ -133,7 +133,7 @@ plot.dCq <- function(scheme) {
 #'
 #' Get delta Cq values
 #'
-#' @examples analyse.cq(scheme, "./data/example.txt",
+#' @examples analyse.cq(scheme, "./data-raw/example.txt",
 #'   hkp = c("housekeeper_1", "housekeeper_2"), silent = TRUE)
 #'
 #' @export
@@ -190,7 +190,7 @@ plot.ddCq <- function(scheme) {
 #'
 #' Run the whole ddcq analysis
 #'
-#' @examples analyse.ddcq(scheme, "./data/example.txt",
+#' @examples analyse.ddcq(scheme, "./data-raw/example.txt",
 #'   hkp = c("housekeeper_1", "housekeeper_2"), silent = TRUE)
 #'
 #' @export
