@@ -1,0 +1,79 @@
+Experiment: 180927_CHK_pibaIntracellular  Selected Filter: SYBR Green I / HRM Dye (465-510)
+Include	Color	Pos	Name	Cp	Concentration	Standard	Status
+True	255	A18	Sample 18	24,88		0	
+True	255	A19	Sample 19	24,62		0	
+True	255	A20	Sample 20	26,56		0	
+True	255	A21	Sample 21	25,56		0	
+True	255	A22	Sample 22	24,71		0	
+True	255	A23	Sample 23	39,20		0	
+True	255	A24	Sample 24	15,48		0	
+True	255	B18	Sample 42	24,60		0	
+True	255	B19	Sample 43	24,48		0	
+True	255	B20	Sample 44	26,06		0	
+True	255	B21	Sample 45	25,63		0	
+True	255	B22	Sample 46	25,49		0	
+True	255	B23	Sample 47	40,00		0	> - Late Cp call (last five cycles) has higher uncertainty
+True	255	B24	Sample 48	15,71		0	
+True	255	C18	Sample 66	27,14		0	
+True	255	C19	Sample 67	27,44		0	
+True	255	C20	Sample 68	28,90		0	
+True	255	C21	Sample 69	28,73		0	
+True	255	C22	Sample 70	29,77		0	
+True	255	C23	Sample 71	40,00		0	> - Late Cp call (last five cycles) has higher uncertainty
+True	255	C24	Sample 72	18,93		0	
+True	255	D18	Sample 90	27,26		0	
+True	255	D19	Sample 91	27,61		0	
+True	255	D20	Sample 92	28,92		0	
+True	255	D21	Sample 93	28,66		0	
+True	255	D22	Sample 94	29,95		0	
+True	255	D23	Sample 95	40,00		0	> - Late Cp call (last five cycles) has higher uncertainty
+True	255	D24	Sample 96	18,90		0	
+True	255	E18	Sample 114	30,26		0	
+True	255	E19	Sample 115	29,80		0	
+True	255	E20	Sample 116	31,77		0	
+True	255	E21	Sample 117	30,72		0	
+True	255	E22	Sample 118	34,46		0	
+True	65280	E23	Sample 119			0	
+True	255	E24	Sample 120	21,69		0	
+True	255	F18	Sample 138	29,70		0	
+True	255	F19	Sample 139	30,10		0	
+True	255	F20	Sample 140	31,20		0	
+True	255	F21	Sample 141	32,16		0	
+True	255	F22	Sample 142	36,16		0	
+True	65280	F23	Sample 143			0	
+True	255	F24	Sample 144	21,58		0	
+True	255	G18	Sample 162	32,58		0	
+True	255	G19	Sample 163	32,66		0	
+True	255	G20	Sample 164	34,70		0	
+True	255	G21	Sample 165	34,48		0	
+True	255	G22	Sample 166	40,00		0	> - Late Cp call (last five cycles) has higher uncertainty
+True	65280	G23	Sample 167			0	
+True	255	G24	Sample 168	24,59		0	
+True	255	H18	Sample 186	33,53		0	
+True	255	H19	Sample 187	33,02		0	
+True	255	H20	Sample 188	35,00		0	
+True	255	H21	Sample 189	34,12		0	
+True	255	H22	Sample 190	40,00		0	> - Late Cp call (last five cycles) has higher uncertainty
+True	65280	H23	Sample 191			0	
+True	255	H24	Sample 192	24,61		0	
+True	255	I18	Sample 210	35,72		0	
+True	255	I19	Sample 211	34,88		0	
+True	255	I20	Sample 212	36,23		0	
+True	255	I21	Sample 213	40,00		0	> - Late Cp call (last five cycles) has higher uncertainty
+True	255	I22	Sample 214	40,00		0	> - Late Cp call (last five cycles) has higher uncertainty
+True	65280	I23	Sample 215			0	
+True	255	I24	Sample 216	27,47		0	
+True	255	J18	Sample 234	34,69		0	
+True	255	J19	Sample 235	34,93		0	
+True	255	J20	Sample 236	35,84		0	
+True	255	J21	Sample 237	35,01		0	
+True	255	J22	Sample 238	40,00		0	> - Late Cp call (last five cycles) has higher uncertainty
+True	65280	J23	Sample 239			0	
+True	255	J24	Sample 240	27,43		0	
+True	65280	K18	Sample 258			0	
+True	255	K19	Sample 259	40,00		0	> - Late Cp call (last five cycles) has higher uncertainty
+True	65280	K20	Sample 260			0	
+True	65280	K21	Sample 261			0	
+True	65280	K22	Sample 262			0	
+True	65280	K23	Sample 263			0	
+True	65280	K24	Sample 264			0	
