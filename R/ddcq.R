@@ -137,8 +137,10 @@ plot.dCq <- function(scheme) {
 #'   hkp = c("housekeeper_1", "housekeeper_2"), silent = TRUE)
 #'
 #' @export
-analyse.dcq <- function(scheme, file, hkp, output = ".", silent = FALSE) {
-    df <- import.LCcq(file, scheme)
+analyse.dcq <- function(scheme, file, hkp, output = ".", silent = FALSE,
+    decimal_mark = '.') {
+
+    df <- import.LCcq(file, scheme, decimal_mark = '.')
 
     if(silent == FALSE) {
         for (i in 1:unique(df$repl_biol)) {
@@ -195,10 +197,10 @@ plot.ddCq <- function(scheme) {
 #'
 #' @export
 analyse.ddcq <- function(scheme, file, hkp, output = ".", silent = FALSE,
-    reference = scheme$cond[1]) {
+    reference = scheme$cond[1], decimal_mark = '.') {
 
     df <- scheme %>%
-        analyse.dcq(file, hkp, output, silent) %>%
+        analyse.dcq(file, hkp, output, silent, decimal_mark = decimal_mark) %>%
         get.ddcq()
 
     if(silent == FALSE) {
