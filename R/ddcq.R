@@ -120,7 +120,7 @@ get.averageDCq <- function(scheme) {
 #' @import dplyr
 #'
 #' @export
-plot.dCq <- function(scheme) {
+plotDCq <- function(scheme) {
     scheme %>%
         ggplot(aes(cond, -dcq)) +
             geom_jitter(aes(colour = as.factor(repl_biol)), size = .5, width = .1, height = 0) +
@@ -144,7 +144,7 @@ get.ddcq <- function(scheme, reference = scheme$cond[1]) {
 #' Plot delta delta Cq values
 #'
 #' @export
-plot.ddCq <- function(scheme, reorder = NULL) {
+plotDdCq <- function(scheme, reorder = NULL) {
 
     if(!is.null(reorder)) {
         scheme <- scheme %>%
