@@ -17,6 +17,6 @@ Import Cq Values Calculated Using LightCycler Software
 }
 \examples{
 scheme <- get.pipettingScheme(paste("primer", 1:7), c(1:5), 1, 2, 1, nrow = 10, first_col = 18)
-    import.LCcq("data/primer.txt", scheme, decimal_mark = ',')
+    import.LCcq("data-raw/primer.txt", scheme, decimal_mark = ',')
 
 }

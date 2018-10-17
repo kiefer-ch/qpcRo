@@ -129,42 +129,6 @@ plot.dCq <- function(scheme) {
 
 }
 
-
-#'
-#' Get delta Cq values
-#'
-#' @examples analyse.cq(scheme, "./data-raw/example.txt",
-#'   hkp = c("housekeeper_1", "housekeeper_2"), silent = TRUE)
-#'
-#' @export
-analyse.dcq <- function(scheme, file, hkp, output = ".", silent = FALSE,
-    decimal_mark = '.') {
-
-    df <- import.LCcq(file, scheme, decimal_mark = decimal_mark)
-
-    if(silent == FALSE) {
-        for (i in 1:unique(df$repl_biol)) {
-            plot.cq(df, rep_biol = i)
-            ggsave(paste0(output, "/cq_rep_", i, ".pdf"), height = 10, width = 16.18)
-        }
-    }
-
-    df <- df %>%
-        get.averageCq() %>%
-        get.dCq(hkp = hkp) %>%
-        get.averageDCq()
-
-    if(silent == FALSE) {
-        write_csv(df, paste0(output, "/dcq.csv"))
-
-        plot.dCq(df)
-        ggsave(paste0(output, "/dcq.pdf"), height = 10, width = 16.18)
-    }
-
-    return(df)
-}
-
-
 #'
 #' Calculate delta delta Cq values
 #'
@@ -180,34 +144,44 @@ get.ddcq <- function(scheme, reference = scheme$cond[1]) {
 #' Plot delta delta Cq values
 #'
 #' @export
-plot.ddCq <- function(scheme) {
+plot.ddCq <- function(scheme, reorder = NULL) {
+
+    if(!is.null(reorder)) {
+        scheme <- scheme %>%
+            mutate(cond = factor(cond, levels = reorder))
+    }
+
     scheme %>%
         ggplot(aes(cond, -ddcq)) +
             geom_jitter(aes(colour = as.factor(repl_biol)), size = .5, width = .1, height = 0) +
-            facet_wrap(~gene, scales = "free_y") +
-        scale_color_discrete(guide = FALSE)
+            facet_wrap(~gene, scales = "free_y")
 
 }
 
 #'
-#' Run the whole ddcq analysis
+#' Making nice breaks
 #'
-#' @examples analyse.ddcq(scheme, "./data-raw/example.txt",
-#'   hkp = c("housekeeper_1", "housekeeper_2"), silent = TRUE)
+my_breaks <- function (n = 5, ...) {
+
+    function(x) {
+        dings <- .045 * (max(x) - min(x))
+        extended_range_breaks_(min(x) + dings , max(x) - dings, n, ...)
+    }
+}
+
+#'
+#' Make your plot look nice
+#'
+#' @import ggthemes
 #'
 #' @export
-analyse.ddcq <- function(scheme, file, hkp, output = ".", silent = FALSE,
-    reference = scheme$cond[1], decimal_mark = '.') {
+make.nice <- function(ggplot) {
 
-    df <- scheme %>%
-        analyse.dcq(file, hkp, output, silent, decimal_mark = decimal_mark) %>%
-        get.ddcq()
-
-    if(silent == FALSE) {
-        plot.ddCq(df)
-        ggsave(paste0(output, "/dcq.pdf"), height = 10, width = 16.18)
-    }
-
-    return(df)
-
+    ggplot +
+        theme_tufte() +
+        geom_rangeframe(sides = 'l') +
+        scale_y_continuous(breaks = my_breaks(),
+            labels = function(x) round(x, 1),
+            name = bquote('-'*Delta*Delta*'Cq')) +
+        scale_color_viridis_d(guide = FALSE)
 }

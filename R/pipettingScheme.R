@@ -29,22 +29,24 @@ num_cond <- length(names_cond)
 num_gene <- length(names_gene)
 
 if (length(rep_tech) == 1) {
-        rep_tech <- rep(rep_tech, num_cond)
-    } else if (length(rep_tech) != num_cond) {
+        rep_tech <- rep(rep(rep_tech, num_cond), rep_biol)
+    } else if (length(rep_tech) == num_cond) {
+        rep_tech <- rep(rep_tech, rep_biol)
+    } else if (length(rep_tech) != num_cond * rep_biol) {
         stop("rep_tech must be either a single integer or a vector of the same
-            length as there are conditions.")
+            length as there are conditions or of the same length as there are
+            conditions * biological replicates.")
 }
 
-length_gene <- sum(rep_tech) * rep_qpcr * rep_biol
+length_gene <- sum(rep_tech) * rep_qpcr
 cols_gene <- ((length_gene - 1) %/% nrow) + 1
 samples_per_column <- rep(c(rep(nrow, (length_gene %/% nrow)), length_gene %% nrow)[c(rep(nrow, (length_gene %/% nrow)),
     length_gene %% nrow) != 0], num_gene)
 
 tibble(gene = rep(names_gene, each = length_gene),
-        cond = as.factor(rep(rep(rep(names_cond, rep_qpcr * rep_tech), num_gene), rep_biol)),
-        repl_biol = rep(rep(1:rep_biol, each = length_gene / rep_biol), num_gene),
-        repl_tech = rep(rep(rep(unlist(lapply(rep_tech, seq)), each = rep_qpcr),
-            num_gene), rep_biol),
+        cond = as.factor(rep(rep(rep(names_cond, rep_biol), rep_qpcr * rep_tech), num_gene)),
+        repl_biol = rep(rep(rep(rep(1:rep_biol, each = num_cond), rep_tech), num_gene), each = rep_biol),
+        repl_tech = rep(rep(unlist(lapply(rep_tech, seq)), each = rep_qpcr), num_gene),
         col = rep(1:(cols_gene * num_gene), samples_per_column),
         row = rep(1:length_gene %% nrow, num_gene)) %>%
     mutate(row = LETTERS[if_else(row == 0, nrow, row)],
