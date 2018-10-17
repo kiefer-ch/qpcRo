@@ -42,5 +42,3 @@ import.LCcq <- function(file, pipettingScheme = NULL, decimal_mark = '.') {
             left_join(df, by = c("col", "row"))
     }
 }
-
-
