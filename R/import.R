@@ -38,7 +38,7 @@ import.LCcq <- function(file, pipettingScheme = NULL, decimal_mark = '.') {
     if (is.null(pipettingScheme)) {
         return(df)
     } else {
-        scheme %>%
+        pipettingScheme %>%
             left_join(df, by = c("col", "row"))
     }
 }

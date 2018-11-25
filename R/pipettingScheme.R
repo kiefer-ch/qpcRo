@@ -45,7 +45,7 @@ samples_per_column <- rep(c(rep(nrow, (length_gene %/% nrow)), length_gene %% nr
 
 tibble(gene = rep(names_gene, each = length_gene),
         cond = as.factor(rep(rep(rep(names_cond, rep_biol), rep_qpcr * rep_tech), num_gene)),
-        repl_biol = rep(rep(rep(rep(1:rep_biol, each = num_cond), rep_tech), num_gene), each = rep_biol),
+        repl_biol = rep(rep(rep(1:rep_biol, each = num_cond), rep_qpcr * rep_tech), num_gene),
         repl_tech = rep(rep(unlist(lapply(rep_tech, seq)), each = rep_qpcr), num_gene),
         col = rep(1:(cols_gene * num_gene), samples_per_column),
         row = rep(1:length_gene %% nrow, num_gene)) %>%

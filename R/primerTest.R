@@ -55,6 +55,7 @@ analyse.primers <- function(scheme, dil = NULL, notPass = NULL) {
             eff = paste("eff =", round(eff, 3)))
 
     cq %>%
+        filter(!is.na(cq)) %>%
         filter(conc != 0) %>%
         ggplot(aes(log2(conc), cq)) +
         geom_point(aes(colour = pass), size = .5) +
